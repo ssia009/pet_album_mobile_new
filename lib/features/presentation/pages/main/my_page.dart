@@ -156,162 +156,211 @@ class _MyPageState extends State<MyPage> {
               Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 350),
-                  child:Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    width: 350,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                  child: Column(
+                    children: [
 
-                        Text(
-                          '반려동물 정보',
-                          style: AppTextStyle.subtitle20M120.copyWith(
-                            color: AppColors.f05,
-                          ),
+                      // ✅ 하얀 박스
+                      Container(
+                        width: 350,
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        const SizedBox(height: 20),
-
-                        // 성향
-                        Row(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: 60,
-                              child: Text(
-                                '성향',
-                                style: AppTextStyle.caption12R120.copyWith(
-                                  color: AppColors.f03,
-                                ),
+
+                            Text(
+                              '반려동물 정보',
+                              style: AppTextStyle.subtitle20M120.copyWith(
+                                color: AppColors.f05,
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 6,
-                                runSpacing: 6,
-                                children: [
-                                  _buildChip('큰소리 주의'),
-                                  _buildChip('이물질 섭취 주위 필요'),
-                                  _buildChip('입질경험있음'),
-                                  _buildChip('분리불안'),
-                                ],
-                              ),
+                            const SizedBox(height: 20),
+
+                            // 성향
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 60,
+                                  child: Container(
+                                    width: 40,
+                                    height: 29,
+                                    padding: const EdgeInsets.fromLTRB(4, 7.5, 5, 7.5),
+                                    child: Text(
+                                      '성향',
+                                      style: AppTextStyle.caption12R120.copyWith(
+                                        color: AppColors.f03,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Wrap(
+                                    spacing: 6,
+                                    runSpacing: 6,
+                                    children: [
+                                      _buildChip('큰소리 주의'),
+                                      _buildChip('이물질 섭취 주위 필요'),
+                                      _buildChip('입질경험있음'),
+                                      _buildChip('분리불안'),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+
+                            // 건강
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 60,
+                                  child: Container(
+                                    width: 40,
+                                    height: 29,
+                                    padding: const EdgeInsets.fromLTRB(4, 7.5, 5, 7.5),
+                                    child: Text(
+                                      '건강',
+                                      style: AppTextStyle.caption12R120.copyWith(
+                                        color: AppColors.f03,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: [
+                                      _buildChip('관절문제있음'),
+                                      _buildChip('슬개골문제 있음'),
+                                      _buildChip('피부문제있음'),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+
+                            // 복용약
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 60,
+                                  child: Container(
+                                    width: 40,
+                                    height: 29,
+                                    padding: const EdgeInsets.fromLTRB(4, 7.5, 5, 7.5),
+                                    child: Text(
+                                      '복용약',
+                                      style: AppTextStyle.caption12R120.copyWith(
+                                        color: AppColors.f03,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: [
+                                      _buildChip('없음'),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                      ),
 
-                        // 건강
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 60,
-                              child: Text(
-                                '건강',
-                                style: AppTextStyle.caption12R120.copyWith(
-                                  color: AppColors.f03,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: [
-                                  _buildChip('관절문제있음'),
-                                  _buildChip('슬개골문제 있음'),
-                                  _buildChip('피부문제있음'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
+                      const SizedBox(height: 16),
 
-                        // 복용약
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 60,
-                              child: Text(
-                                '복용약',
-                                style: AppTextStyle.caption12R120.copyWith(
-                                  color: AppColors.f03,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: [
-                                  _buildChip('없음'),
+                      //페이지 인디케이터
+                      _buildPageIndicator(),
 
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-
-                        // 페이지 인디케이터
-                        _buildPageIndicator(),
-                      ],
-                    ),
+                    ],
                   ),
                 ),
               ),
 
+
               const SizedBox(height: 40),
 
               // 반려동물
-              Text(
-                '반려동물',
-                style: AppTextStyle.subtitle20M120.copyWith(
-                  color: AppColors.f05,
+              SizedBox(
+                width: 350,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '반려동물',
+                      style: AppTextStyle.subtitle20M120.copyWith(
+                        color: AppColors.f05,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                      ),
+                      child: Text(
+                        '내 앨범',
+                        style: AppTextStyle.body16M120.copyWith(
+                          color: AppColors.f04,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                '내 앨범',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
-                ),
-              ),
+
 
 
               const SizedBox(height: 20),
-
+//패밀리
               Text(
                 '패밀리',
                 style: AppTextStyle.subtitle20M120.copyWith(
                   color: AppColors.f05,
                 ),
               ),
+
               const SizedBox(height: 8),
-              Text(
-                '패밀리 계정',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '패밀리 계정',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
+                ),
               ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                '패밀리 관리하기',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              const SizedBox(height: 0),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '패밀리 관리하기',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
 
               const SizedBox(height: 20),
+
+
 
               // 펫시터
               Text(
@@ -320,18 +369,28 @@ class _MyPageState extends State<MyPage> {
                   color: AppColors.f05,
                 ),
               ),
+
               const SizedBox(height: 8),
-              Text(
-                '펫시터 이용 내역',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '펫시터 이용 내역',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                '내 후기 관리',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              const SizedBox(height: 0),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '내 후기 관리',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
 
@@ -344,20 +403,31 @@ class _MyPageState extends State<MyPage> {
                   color: AppColors.f05,
                 ),
               ),
+
               const SizedBox(height: 8),
-              Text(
-                '결제수단 등록',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '결제수단 등록',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                '결제수단 변경',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              const SizedBox(height: 0),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '결제수단 변경',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
+
 
               const SizedBox(height: 20),
 
@@ -368,13 +438,19 @@ class _MyPageState extends State<MyPage> {
                   color: AppColors.f05,
                 ),
               ),
+
               const SizedBox(height: 8),
-              Text(
-                '라이프케어란?',
-                style: AppTextStyle.body16M120.copyWith(
-                  color: AppColors.f04,
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '라이프케어란?',
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f04,
+                  ),
                 ),
               ),
+
             ],
           ),
         ),

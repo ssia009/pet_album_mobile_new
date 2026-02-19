@@ -1,16 +1,11 @@
-# pet_album_mobile_new
+# 2026-02-19-수정사항
+- 마이페이지 아래 설정부분 패딩값 설정
+- 반려동물 정보 패딩값 수정
+  (성향, 건강, 복용약)
+- 
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 2026-02-13-수정사항
+- 네비게이션바 색상 수정
+- 마이페이지 아이디 카드를 제외한 부분 색상 간격 라운드 수정
+- 나의앨범 아이콘 북마크, +버튼 수정
+- 나의 앨범 미트볼 버튼(...) 안의 요소 수정
