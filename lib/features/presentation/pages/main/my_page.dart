@@ -106,8 +106,8 @@ class _MyPageState extends State<MyPage> {
                     child:
                     ElevatedButton(
                       style: AppButtonStyles.base(
-                        backgroundColor: Colors.white,
-                        foregroundColor: AppColors.f01,
+                        backgroundColor: AppColors.white,
+                        foregroundColor: AppColors.gray01,
                       ).copyWith(
                         elevation: MaterialStateProperty.all(2), // 살짝 떠 있는 느낌
                         shadowColor: MaterialStateProperty.all(Colors.black.withOpacity(0.08)),
@@ -159,7 +159,7 @@ class _MyPageState extends State<MyPage> {
                   child: Column(
                     children: [
 
-                      // ✅ 하얀 박스
+                      // 박스
                       Container(
                         width: 350,
                         padding: const EdgeInsets.all(20),
