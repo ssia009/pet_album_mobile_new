@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
 import 'package:petAblumMobile/core/theme/app_common_button_styles.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
@@ -58,10 +59,11 @@ class Oauth2LoginPage extends StatelessWidget {
 
               // 구글 로그인
               SizedBox(
-                width: double.infinity,
+                width: 350,
+                height: 55,
                 child: OutlinedButton(
                   style: AppButtonStyles.base(
-                    backgroundColor:AppColors.gray01,
+                    backgroundColor: AppColors.gray01,
                     foregroundColor: Colors.black,
                   ).copyWith(
                     side: WidgetStateProperty.all(
@@ -69,15 +71,16 @@ class Oauth2LoginPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      Image.asset(
-                        'assets/system/icons/google_logo.png',
-                        width: 32,
-                        height: 32,
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: SvgPicture.asset('assets/system/icons/google_logo.svg',
+                          width: 32,
+                          height: 32,
+                        ),
                       ),
-                      const SizedBox(width: 58),
                       const Text('구글 로그인 하기'),
                     ],
                   ),
@@ -115,7 +118,9 @@ class Oauth2LoginPage extends StatelessWidget {
                       height: 52,
                     ),
                   ),
+
                   const SizedBox(width: 8),
+
                   IconButton(
                     iconSize: 36,
                     onPressed: () {},
