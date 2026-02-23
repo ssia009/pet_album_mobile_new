@@ -1,5 +1,6 @@
 // album_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
 import 'package:petAblumMobile/core/theme/app_text_semantic.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
@@ -40,15 +41,35 @@ class _AlbumPageState extends State<AlbumPage> {
       backgroundColor: AppColors.white,
       appBar: CommonMainAppBar(
         title: '',
-        actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (_) => const AlbumSearch(),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: SvgPicture.asset(
+                      'assets/system/icons/icon_search.svg',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      '선택',
+                      style: AppTextStyle.body16R120.copyWith(
+                        color: AppColors.f05,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            );},
-          ),
-          IconButton(icon: const Icon(Icons.apps), onPressed: () {}),
-        ],
+            ),
+          ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

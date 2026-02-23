@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 
@@ -21,21 +22,12 @@ class CommonNavigationScaffold extends StatelessWidget {
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
           indicatorColor: Colors.transparent,
-
-          iconTheme: WidgetStateProperty.resolveWith(
-                (states) => IconThemeData(
-              color: states.contains(WidgetState.selected)
-                  ? AppColors.fMain
-                  : AppColors.f02,
-            ),
-          ),
-
           labelTextStyle: WidgetStateProperty.resolveWith(
                 (states) => AppTextStyle.caption12R140.copyWith(
+              fontSize: 12,
               color: states.contains(WidgetState.selected)
                   ? AppColors.fMain
                   : AppColors.f02,
-              fontSize: 12,
             ),
           ),
         ),
@@ -43,23 +35,49 @@ class CommonNavigationScaffold extends StatelessWidget {
           backgroundColor: AppColors.white,
           selectedIndex: currentIndex,
           onDestinationSelected: onTap,
-          destinations: const [
+          destinations: [
             NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              selectedIcon: Icon(Icons.home_outlined),
+              icon: SvgPicture.asset(
+                'assets/system/icons/icon_home.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  currentIndex == 0
+                      ? AppColors.fMain
+                      : AppColors.f02,
+                  BlendMode.srcIn,
+                ),
+              ),
               label: '홈',
             ),
             NavigationDestination(
-              icon: Icon(Icons.photo_album_outlined),
-              selectedIcon: Icon(Icons.photo_album_outlined),
+              icon: SvgPicture.asset(
+                'assets/system/icons/icon_album.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  currentIndex == 1
+                      ? AppColors.fMain
+                      : AppColors.f02,
+                  BlendMode.srcIn,
+                ),
+              ),
               label: '앨범',
             ),
             NavigationDestination(
-              icon: Icon(Icons.person_outline),
-              selectedIcon: Icon(Icons.person_outline),
+              icon: SvgPicture.asset(
+                'assets/system/icons/icon_mypage.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  currentIndex == 2
+                      ? AppColors.fMain
+                      : AppColors.f02,
+                  BlendMode.srcIn,
+                ),
+              ),
               label: '마이페이지',
             ),
-
           ],
         ),
       ),
