@@ -24,116 +24,145 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: const EdgeInsets.all(16),
         children: [
 
-          _card([
-            _sectionTitle('계정'),
-            _item('개인정보 변경'),
-            _item('비밀번호 변경'),
-            _item('펫시터 계정으로 전환'),
-          ]),
+          _fixedCard(
+            child: _card('계정', [
+              _item('개인정보 변경'),
+              _item('비밀번호 변경'),
+              _item('펫시터 계정으로 전환'),
+            ]),
+          ),
+
           const SizedBox(height: 16),
 
+          _fixedCard(
+            child: _card('알림', [
+              _item('메시지 알림'),
+              _item('펫시터 알림'),
+            ]),
+          ),
 
-          _card([
-            _sectionTitle('알림'),
-            _item('메시지 알림'),
-            _item('펫시터 알림'),
-          ]),
           const SizedBox(height: 16),
 
+          _fixedCard(
+            child: _card('보안', [
+              _item('로그인 기기 관리'),
+            ]),
+          ),
 
-          _card([
-            _sectionTitle('보안'),
-            _item('로그인 기기 관리'),
-          ]),
           const SizedBox(height: 16),
 
+          _fixedCard(
+            child: _card('도움', [
+              _item('자주 묻는 질문'),
+              _item('고객센터'),
+            ]),
+          ),
 
-          _card([
-            _sectionTitle('도움'),
-            _item('자주 묻는 질문'),
-            _item('고객센터'),
-          ]),
           const SizedBox(height: 16),
 
+          _fixedCard(
+            child: _card('약관 및 정책', [
+              _item('서비스 이용 약관'),
+              _item('개인정보 처리 방침'),
+            ]),
+          ),
 
-          _card([
-            _sectionTitle('약관 및 정책'),
-            _item('서비스 이용 약관'),
-            _item('개인정보 처리 방침'),
-          ]),
           const SizedBox(height: 16),
 
-          _card([
-            _item('로그아웃', showArrow: false),
-            _item(
-              '회원탈퇴',
-              showArrow: false,
-              color: Colors.red,
-            ),
-          ]),
+          _fixedCard(
+            child: _cardOnlyItems([
+              _item('로그아웃', showArrow: false),
+              _item(
+                '회원탈퇴',
+                showArrow: false,
+                color: Colors.red,
+              ),
+            ]),
+          ),
         ],
       ),
     );
   }
 }
 
-Widget _sectionTitle(String text) {
-  return Padding(
-    padding: const EdgeInsets.only( left: 16, bottom: 8, top: 16),
-    child: Text(
-      text,
-      style: AppTextStyle.subtitle20M120.copyWith(
-        color: AppColors.f05
-      )
-
-
+/// 🔥 350 고정 + 가운데 정렬
+Widget _fixedCard({required Widget child}) {
+  return Center(
+    child: SizedBox(
+      width: 350,
+      child: child,
     ),
   );
 }
 
-Widget _card(List<Widget> children) {
+Widget _card(String title, List<Widget> items) {
   return Container(
+    padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-      children: children,),
-  );
-}
-Widget _item(
-    String text, {
-      bool showDivider = false,
-      bool showArrow = true,
-      Color? color,
-    }) {
-  return SizedBox(
-    width: 318,
     child: Column(
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                text,
-                style: AppTextStyle.body16R120.copyWith(
-                  color: color ?? AppColors.f04,
-                ),
-              ),
-              if (showArrow)
-                SvgPicture.asset(
-                  'assets/system/icons/chevron_right.svg',
-                  width: 24,
-                  height: 24,
-                ),
-            ],
+        Text(
+          title,
+          style: AppTextStyle.subtitle20M120.copyWith(
+            color: AppColors.f05,
           ),
         ),
+        const SizedBox(height: 8),
+        ...items,
       ],
     ),
   );
 }
 
+Widget _item(
+    String text, {
+      bool showArrow = true,
+      Color? color,
+    }) {
+  return SizedBox(
+    height: 36,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          text,
+          style: AppTextStyle.body16R120.copyWith(
+            color: color ?? AppColors.f04,
+          ),
+        ),
+        if (showArrow)
+          SvgPicture.asset(
+            'assets/system/icons/chevron_right.svg',
+            width: 24,
+            height: 24,
+          ),
+      ],
+    ),
+  );
+}
+
+Widget _cardOnlyItems(List<Widget> items) {
+  return Container(
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(
+        items.length,
+            (index) => Padding(
+          padding: EdgeInsets.only(
+            bottom: index == items.length - 1 ? 0 : 8,
+          ),
+          child: items[index],
+        ),
+      ),
+    ),
+  );
+}

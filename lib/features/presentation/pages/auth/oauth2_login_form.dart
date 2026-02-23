@@ -57,35 +57,31 @@ class Oauth2LoginPage extends StatelessWidget {
 
               const SizedBox(height: 8),
 
-              // 구글 로그인
               SizedBox(
                 width: 350,
                 height: 55,
-                child: OutlinedButton(
+                child: ElevatedButton(
                   style: AppButtonStyles.base(
                     backgroundColor: AppColors.gray01,
-                    foregroundColor: Colors.black,
-                  ).copyWith(
-                    side: WidgetStateProperty.all(
-                      const BorderSide(color: AppColors.gray01),
-                    ),
+                    foregroundColor: AppColors.f05,
                   ),
                   onPressed: () {},
-                  child: Stack(
-                    alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: SvgPicture.asset('assets/system/icons/google_logo.svg',
-                          width: 32,
-                          height: 32,
-                        ),
+                      const SizedBox(width: 20),
+                      Image.asset(
+                        'assets/system/icons/google_logo.png',
+                        width: 32,
+                        height: 32,
                       ),
+                      const SizedBox(width: 58),
                       const Text('구글 로그인 하기'),
                     ],
                   ),
                 ),
-              ),
+              ),// SVG  변환
+
 
               const SizedBox(height: 20),
 

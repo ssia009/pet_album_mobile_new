@@ -152,16 +152,16 @@ class _MyPageState extends State<MyPage> {
               //     const SizedBox(height: 24),
               //   ],
               // ),
+              SizedBox(height: 20),
 
               Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 350),
-                  child: Column(
+                child:
+                  Column(
                     children: [
 
                       // 박스
                       Container(
-                        width: 350,
+
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: AppColors.white,
@@ -290,7 +290,7 @@ class _MyPageState extends State<MyPage> {
                     ],
                   ),
                 ),
-              ),
+
 
 
               const SizedBox(height: 40),
@@ -509,6 +509,7 @@ class _MyPageState extends State<MyPage> {
       favoriteToy: '목욕',
       sex: '수컷',
       birth: '2025.01.02',
+      petFamily: '또또네 가족',
       onTap: () {
         Navigator.push(
           context,
