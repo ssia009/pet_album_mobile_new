@@ -9,6 +9,7 @@ import 'package:petAblumMobile/core/widgets/pet_card.dart';
 import 'package:petAblumMobile/features/presentation/pages/main/settings_page.dart';
 import 'package:petAblumMobile/features/presentation/pages/pet_crud/pet_list.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({super.key});
@@ -34,16 +35,20 @@ class _MyPageState extends State<MyPage> {
         title: "마이페이지",
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings_rounded),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const SettingsPage(),
-                ),
-              );
-            },
-          ),
+          onPressed: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (_) => const SettingsPage(),
+    ),
+    );
+    },
+      icon: SvgPicture.asset(
+        'assets/system/icons/icon_settings.svg',
+        width: 24,
+        height: 24,
+      ),
+    ),
         ],
       ),
       body: SafeArea(

@@ -14,6 +14,12 @@ class AppText {
     color: AppColors.f04,
   );
 
+  /// 회원가입 제목
+  static final body12m =
+  AppTextStyle.body16M120.copyWith(
+    color: AppColors.f03,
+  );
+
   /// 힌트 / 플레이스홀더
   static final bodyHint =
   AppTextStyle.body16R120.copyWith(

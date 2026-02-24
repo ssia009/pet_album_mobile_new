@@ -24,6 +24,7 @@ class CommonMainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
       backgroundColor: AppColors.gray00,
       elevation: 0,
+      surfaceTintColor: Colors.transparent,
       centerTitle: false,
       leadingWidth: 120,
       leading: leadingContent == null
