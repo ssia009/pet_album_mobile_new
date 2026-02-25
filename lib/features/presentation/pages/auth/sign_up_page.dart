@@ -52,23 +52,27 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('회원가입', style: AppTextStyle.subtitle20M120.copyWith(
-            color: AppColors.f05),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/system/icons/icon_chevron_right.svg',
-              width: 24,
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                AppColors.f05,
-                BlendMode.srcIn,),
+        appBar: AppBar(
+          title: Text('회원가입', style: AppTextStyle.subtitle20M120.copyWith(
+              color: AppColors.f05),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleSpacing: 0,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: SvgPicture.asset('assets/system/icons/icon_chevron_right.svg',
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  AppColors.f05,
+                  BlendMode.srcIn,),
+              ),
             ),
           ),
-      ),
+        ),
       body: SafeArea(
         child: Column(
           children: [

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_button_theme.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
-import 'package:petAblumMobile/core/widgets/common_app_bar_main_scaffold.dart';
-import 'package:petAblumMobile/features/presentation/pages/main/alram.dart';
-import 'package:petAblumMobile/features/presentation/pages/pet_crud/pet_list.dart';
+import 'package:petAblumMobile/core/theme/app_fonts_style_dahyun.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
+import 'package:petAblumMobile/features/presentation/pages/main/alram.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,43 +12,81 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.f01,
-      appBar: CommonMainAppBar(
-        title: '',
+      backgroundColor: AppColors.bg,
+      appBar: AppBar(
+        backgroundColor: AppColors.bg,
+        elevation: 0,
         actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (_) => const AlarmPage(),
+          IconButton(
+            icon: SvgPicture.asset(
+              'assets/system/icons/icon_notification.svg',
+              width: 24,
+              height: 24,
+              colorFilter: ColorFilter.mode(AppColors.f05, BlendMode.srcIn),
             ),
-            );},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const AlarmPage()));
+            },
           ),
-          IconButton(icon: const Icon(Icons.apps), onPressed: () {}),
+          const SizedBox(width: 8),
         ],
       ),
-      body : SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Family Home',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-
-              const SizedBox(height: 16),
-
-              // 예시 콘텐츠
-              Expanded(
-                child: Center(
-                  child: Text(
-                    '여기가 패밀리 홈 화면',
-                    style: Theme.of(context).textTheme.bodyLarge,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 155,
+              left: 0,
+              right: 0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '함께한 추억들을 정리해,\n또또와의 이야기를 만들어보세요',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyleDahyun.dahyun(
+                      size: 24,
+                      weight: FontWeight.w400,
+                      height: 1.2,
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 40),
+                  SizedBox(
+                    width: 171,
+                    height: 55,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.black,
+                        foregroundColor: AppColors.f01,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 18),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(
+                            color: AppColors.gray05,
+                            width: 1.5,
+                          ),
+                        ),
+                        elevation: 0,
+                      ).copyWith(
+                        shadowColor: WidgetStateProperty.all(
+                            Colors.black.withOpacity(0.25)),
+                        elevation: WidgetStateProperty.all(4),
+                      ),
+                      child: Text(
+                        '앨범 생성하기',
+                        style: AppTextStyle.body16M120.copyWith(
+                          color: AppColors.f01,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ]
-          ),
+            ),
+          ],
         ),
       ),
     );
