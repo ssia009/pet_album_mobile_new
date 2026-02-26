@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/core/widgets/common_app_back_bar_scaffold.dart';
-
+import 'package:petAblumMobile/features/presentation/pages/auth/oauth2_login_form.dart';
+import 'package:petAblumMobile/core/widgets/withdrawal_page.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -14,69 +14,149 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
+  void _showLogoutDialog() {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.4),
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '로그아웃 하시겠습니까?',
+                  style: AppTextStyle.subtitle20M120.copyWith(
+                    color: AppColors.f05,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '로그아웃하시면 서비스 이용이 제한될 수 있습니다.',
+                  style: AppTextStyle.description14R120.copyWith(
+                    color: AppColors.f04,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.gray02,
+                          side: BorderSide(color: AppColors.gray02, width: 1.5),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          minimumSize: const Size(151, 55),
+                          padding: EdgeInsets.zero,
+                        ),
+                        child: Text(
+                          '취소',
+                          style: AppTextStyle.body16R120.copyWith(
+                            color: AppColors.f05,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          // TODO: 로그아웃 로직 (토큰 삭제 등)
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                              builder: (_) => const Oauth2LoginPage(),
+                            ),
+                                (route) => false,
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.black,
+                          side: BorderSide(color: AppColors.black, width: 1.5),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          minimumSize: const Size(151, 55),
+                          padding: EdgeInsets.zero,
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          '로그아웃',
+                          style: AppTextStyle.body16R120.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CommonBackAppBar(
-        title: '설정',
-      ),
+      appBar: CommonBackAppBar(title: '설정'),
       backgroundColor: AppColors.bg,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-
-          _fixedCard(
-            child: _card('계정', [
-              _item('개인정보 변경'),
-              _item('비밀번호 변경'),
-              _item('펫시터 계정으로 전환'),
-            ]),
-          ),
-
+          _fixedCard(child: _card('계정', [
+            _item('개인정보 변경'),
+            _item('비밀번호 변경'),
+            _item('펫시터 계정으로 전환'),
+          ])),
           const SizedBox(height: 16),
-
-          _fixedCard(
-            child: _card('알림', [
-              _item('메시지 알림'),
-              _item('펫시터 알림'),
-            ]),
-          ),
-
+          _fixedCard(child: _card('알림', [
+            _item('메시지 알림'),
+            _item('펫시터 알림'),
+          ])),
           const SizedBox(height: 16),
-
-          _fixedCard(
-            child: _card('보안', [
-              _item('로그인 기기 관리'),
-            ]),
-          ),
-
+          _fixedCard(child: _card('보안', [
+            _item('로그인 기기 관리'),
+          ])),
           const SizedBox(height: 16),
-
-          _fixedCard(
-            child: _card('도움', [
-              _item('자주 묻는 질문'),
-              _item('고객센터'),
-            ]),
-          ),
-
+          _fixedCard(child: _card('도움', [
+            _item('자주 묻는 질문'),
+            _item('고객센터'),
+          ])),
           const SizedBox(height: 16),
-
-          _fixedCard(
-            child: _card('약관 및 정책', [
-              _item('서비스 이용 약관'),
-              _item('개인정보 처리 방침'),
-            ]),
-          ),
-
+          _fixedCard(child: _card('약관 및 정책', [
+            _item('서비스 이용 약관'),
+            _item('개인정보 처리 방침'),
+          ])),
           const SizedBox(height: 16),
-
           _fixedCard(
             child: _cardOnlyItems([
-              _item('로그아웃', showArrow: false),
-              _item(
+              _itemWithTap(
+                '로그아웃',
+                showArrow: false,
+                onTap: _showLogoutDialog,
+              ),
+              _itemWithTap(
                 '회원탈퇴',
                 showArrow: false,
                 color: Colors.red,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => WithdrawalPage()),
+                  );
+                },
               ),
             ]),
           ),
@@ -86,14 +166,39 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
-/// 🔥 350 고정 + 가운데 정렬
-Widget _fixedCard({required Widget child}) {
-  return Center(
+Widget _itemWithTap(
+    String text, {
+      bool showArrow = true,
+      Color? color,
+      VoidCallback? onTap,
+    }) {
+  return GestureDetector(
+    onTap: onTap,
     child: SizedBox(
-      width: 350,
-      child: child,
+      height: 36,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            text,
+            style: AppTextStyle.body16R120.copyWith(
+              color: color ?? AppColors.f04,
+            ),
+          ),
+          if (showArrow)
+            SvgPicture.asset(
+              'assets/system/icons/chevron_right.svg',
+              width: 24,
+              height: 24,
+            ),
+        ],
+      ),
     ),
   );
+}
+
+Widget _fixedCard({required Widget child}) {
+  return Center(child: SizedBox(width: 350, child: child));
 }
 
 Widget _card(String title, List<Widget> items) {
@@ -106,12 +211,7 @@ Widget _card(String title, List<Widget> items) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: AppTextStyle.subtitle20M120.copyWith(
-            color: AppColors.f05,
-          ),
-        ),
+        Text(title, style: AppTextStyle.subtitle20M120.copyWith(color: AppColors.f05)),
         const SizedBox(height: 8),
         ...items,
       ],
@@ -119,28 +219,15 @@ Widget _card(String title, List<Widget> items) {
   );
 }
 
-Widget _item(
-    String text, {
-      bool showArrow = true,
-      Color? color,
-    }) {
+Widget _item(String text, {bool showArrow = true, Color? color}) {
   return SizedBox(
     height: 36,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          text,
-          style: AppTextStyle.body16R120.copyWith(
-            color: color ?? AppColors.f04,
-          ),
-        ),
+        Text(text, style: AppTextStyle.body16R120.copyWith(color: color ?? AppColors.f04)),
         if (showArrow)
-          SvgPicture.asset(
-            'assets/system/icons/chevron_right.svg',
-            width: 24,
-            height: 24,
-          ),
+          SvgPicture.asset('assets/system/icons/chevron_right.svg', width: 24, height: 24),
       ],
     ),
   );
@@ -149,18 +236,13 @@ Widget _item(
 Widget _cardOnlyItems(List<Widget> items) {
   return Container(
     padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
+    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
         items.length,
             (index) => Padding(
-          padding: EdgeInsets.only(
-            bottom: index == items.length - 1 ? 0 : 8,
-          ),
+          padding: EdgeInsets.only(bottom: index == items.length - 1 ? 0 : 8),
           child: items[index],
         ),
       ),
