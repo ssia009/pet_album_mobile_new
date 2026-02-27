@@ -101,17 +101,24 @@ class _IdLoginPageState extends State<IdLoginPage> {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Expanded(child: Divider(thickness: 1)),
-                      Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 12),
-                        child: Text(
-                          'SNS 로그인',
-                          style: AppText.captionSecondary,
-                        ),
+                      const SizedBox(
+                        width: 60,
+                        child: Divider(
+                            thickness: 1.5),
                       ),
-                      const Expanded(child: Divider(thickness: 1)),
+                      const SizedBox(width: 8),
+                      Text(
+                        'SNS 로그인',
+                        style: AppText.captionSecondary,
+                      ),
+                      const SizedBox(width: 8),
+                      const SizedBox(
+                        width: 60,
+                        child: Divider(
+                            thickness: 1.5),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),

@@ -5,6 +5,8 @@ import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/core/widgets/common_app_back_bar_scaffold.dart';
 import 'package:petAblumMobile/features/presentation/pages/auth/oauth2_login_form.dart';
 import 'package:petAblumMobile/core/widgets/withdrawal_page.dart';
+import 'package:petAblumMobile/core/widgets/app_out_button.dart';
+import 'package:petAblumMobile/core/theme/app_custom_button.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -47,31 +49,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: OutlinedButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: AppColors.gray02,
-                          side: BorderSide(color: AppColors.gray02, width: 1.5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          minimumSize: const Size(151, 55),
-                          padding: EdgeInsets.zero,
-                        ),
-                        child: Text(
-                          '취소',
-                          style: AppTextStyle.body16R120.copyWith(
-                            color: AppColors.f05,
-                          ),
-                        ),
+                      child: AppCustomButton(
+                        text: '취소',
+                        onTap: () => Navigator.of(context).pop(),
+                        backgroundColor: AppColors.gray02,
+                        textColor: AppColors.f05,
+                        borderColor: AppColors.gray02,
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
+                      child: AppCustomButton(
+                        text: '로그아웃',
+                        onTap: () {
                           Navigator.of(context).pop();
-                          // TODO: 로그아웃 로직 (토큰 삭제 등)
                           Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
                               builder: (_) => const Oauth2LoginPage(),
@@ -79,22 +70,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                 (route) => false,
                           );
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.black,
-                          side: BorderSide(color: AppColors.black, width: 1.5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          minimumSize: const Size(151, 55),
-                          padding: EdgeInsets.zero,
-                          elevation: 0,
-                        ),
-                        child: Text(
-                          '로그아웃',
-                          style: AppTextStyle.body16R120.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
+                        backgroundColor: AppColors.black,
+                        textColor: AppColors.f01,
+                        borderColor: AppColors.black,
                       ),
                     ),
                   ],
@@ -106,7 +84,6 @@ class _SettingsPageState extends State<SettingsPage> {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -54,13 +54,6 @@ class PetCard extends StatelessWidget {
                     fit: BoxFit.fill,
                   ),
 
-                  if (topRightIcon != null)
-                    Positioned(
-                      right: 30 * s,
-                      top: -15 * s,
-                      child: topRightIcon!,
-                    ),
-
                   Positioned(
                     left: 207 * s,
                     top: 29 * s,
@@ -95,6 +88,14 @@ class PetCard extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // ✅ 맨 마지막 = 가장 위 레이어
+                  if (topRightIcon != null)
+                    Positioned(
+                      right: 8 * s,
+                      top: 8 * s,
+                      child: topRightIcon!,
+                    ),
                 ],
               ),
             ),
@@ -132,7 +133,7 @@ class PetCard extends StatelessWidget {
                 style: AppTextStyleDahyun.dahyun(
                   size: 20 * s,
                   weight: FontWeight.w400,
-                  height: 1.0  * s,
+                  height: 1.0 * s,
                 ).copyWith(
                   color: const Color(0xFFFFEAA2),
                   letterSpacing: -0.3 * s,

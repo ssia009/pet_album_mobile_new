@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
+import 'package:petAblumMobile/core/theme/app_custom_button.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/core/widgets/common_app_back_bar_scaffold.dart';
-import 'package:petAblumMobile/features/presentation/pages/auth/oauth2_login_form.dart';
 import 'package:petAblumMobile/core/widgets/Withdrawal_Certification.dart';
 
 class WithdrawalPage extends StatefulWidget {
@@ -18,6 +18,11 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double horizontalPadding = screenWidth * 0.045;
+    final double verticalPadding = screenHeight * 0.02;
+
     return Scaffold(
       appBar: CommonBackAppBar(title: '회원탈퇴'),
       backgroundColor: AppColors.bg,
@@ -25,7 +30,10 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
         children: [
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: verticalPadding,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -34,20 +42,17 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                   _sectionCard(
                     title: '탈퇴할 계정',
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6),
-                      child: SizedBox(
-                        width: 318,
-                        child: Text(
-                          'aaa@gmail.com', // 실제 유저 이메일
-                          style: AppTextStyle.body16R120.copyWith(
-                            color: AppColors.f05,
-                          ),
+                      padding: EdgeInsets.symmetric(vertical: screenHeight * 0.008),
+                      child: Text(
+                        'aaa@gmail.com',
+                        style: AppTextStyle.body16R120.copyWith(
+                          color: AppColors.f05,
                         ),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: screenHeight * 0.02),
 
                   // 계정 복구 및 데이터 파기
                   _sectionCard(
@@ -62,7 +67,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: screenHeight * 0.02),
 
                   // 요금제 이용권 등의 환불
                   _sectionCard(
@@ -74,7 +79,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: screenHeight * 0.02),
 
                   // 탈퇴 후 재가입
                   _sectionCard(
@@ -87,12 +92,12 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                     ),
                   ),
 
-                  const SizedBox(height: 16),
+                  SizedBox(height: screenHeight * 0.02),
 
                   // 체크박스 카드
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(16),
+                    padding: EdgeInsets.all(screenHeight * 0.02),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
@@ -108,7 +113,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                             width: 24,
                             height: 24,
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: screenWidth * 0.02),
                           Expanded(
                             child: Text(
                               '탈퇴 주의사항을 모두 확인하였으며 동의합니다.',
@@ -122,7 +127,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: screenHeight * 0.03),
                 ],
               ),
             ),
@@ -130,73 +135,42 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
 
           // 하단 버튼
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 32),
+            padding: EdgeInsets.fromLTRB(
+              horizontalPadding,
+              screenHeight * 0.015,
+              horizontalPadding,
+              screenHeight * 0.04,
+            ),
             child: Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    style: OutlinedButton.styleFrom(
-                      backgroundColor: AppColors.white,
-                      side: BorderSide(color: AppColors.gray02, width: 1.5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      minimumSize: const Size(171, 55),
-                      padding: EdgeInsets.zero,
-                    ),
-                    child: Text(
-                      '취소',
-                      style: AppTextStyle.body16R120.copyWith(
-                        color: AppColors.f05,
-                      ),
-                    ),
+                  child: AppCustomButton(
+                    text: '취소',
+                    onTap: () => Navigator.of(context).pop(),
+                    backgroundColor: AppColors.white,
+                    textColor: AppColors.f05,
+                    borderColor: AppColors.gray02,
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: screenWidth * 0.03),
                 Expanded(
-                  child: ElevatedButton(
-    onPressed: _isChecked
-    ? () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (_) => WithdrawalCertificationPage(),
-    ),
-    );
-    }
-        : null,
-    style: ButtonStyle(
-    backgroundColor: MaterialStateProperty.resolveWith((states) {
-    if (states.contains(MaterialState.disabled)) {
-    return AppColors.bg;      // 체크 안됐을 때 배경색
-    }
-    return AppColors.black;    // 체크됐을 때 배경색
-    }),
-    foregroundColor: MaterialStateProperty.resolveWith((states) {
-    if (states.contains(MaterialState.disabled)) {
-    return AppColors.f03;     // 체크 안됐을 때 텍스트색
-    }
-    return AppColors.f01;       //  체크됐을 때 텍스트색
-    }),
-    side: MaterialStateProperty.all(
-    BorderSide(color: AppColors.gray01, width: 1.5),
-    ),
-    shape: MaterialStateProperty.all(
-    RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(16),
-    ),
-    ),
-    minimumSize: MaterialStateProperty.all(const Size(151, 55)),
-    padding: MaterialStateProperty.all(EdgeInsets.zero),
-    elevation: MaterialStateProperty.all(0),
-    ),
-                    child: Text(
-                      '다음',
-                      style: AppTextStyle.body16R120.copyWith(
-
-                      ),
-                    ),
+                  child: AppCustomButton(
+                    text: '다음',
+                    onTap: _isChecked
+                        ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => WithdrawalCertificationPage(),
+                        ),
+                      );
+                    }
+                        : null,
+                    backgroundColor: AppColors.black,
+                    textColor: AppColors.f01,
+                    borderColor: AppColors.black,
+                    disabledBackgroundColor: AppColors.bg,
+                    disabledTextColor: AppColors.f03,
                   ),
                 ),
               ],
@@ -208,9 +182,11 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
   }
 
   Widget _sectionCard({required String title, required Widget child}) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(screenHeight * 0.02),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -224,7 +200,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
               color: AppColors.f05,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: screenHeight * 0.01),
           child,
         ],
       ),
@@ -232,22 +208,21 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
   }
 
   Widget _bulletItem(String text) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: SizedBox(
-        width: 318,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('• ', style: AppTextStyle.description14R140.copyWith(color: AppColors.f04)),
-            Expanded(
-              child: Text(
-                text,
-                style: AppTextStyle.description14R140.copyWith(color: AppColors.f04),
-              ),
+      padding: EdgeInsets.symmetric(vertical: screenHeight * 0.008),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('• ', style: AppTextStyle.description14R140.copyWith(color: AppColors.f04)),
+          Expanded(
+            child: Text(
+              text,
+              style: AppTextStyle.description14R140.copyWith(color: AppColors.f04),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

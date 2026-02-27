@@ -16,22 +16,25 @@ class CommonBackAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       automaticallyImplyLeading: false,
-
-      titleSpacing: 0, // 타이틀 기본 간격 제거
-
+      titleSpacing: 0,
       backgroundColor: AppColors.gray00,
       elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset('assets/system/icons/icon_back.svg',
-          width: 24,
-          height: 24,
-          colorFilter: ColorFilter.mode(
-            AppColors.f05,
-            BlendMode.srcIn,),
+      toolbarHeight: kToolbarHeight + 40, // ✅ 상하 20씩 높이 추가
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 20), // ✅ 왼쪽 20
+        child: IconButton(
+          icon: SvgPicture.asset(
+            'assets/system/icons/icon_back.svg',
+            width: 24,
+            height: 24,
+            colorFilter: const ColorFilter.mode(
+              AppColors.f05,
+              BlendMode.srcIn,
+            ),
+          ),
+          onPressed: () => Navigator.pop(context),
         ),
-        onPressed: () => Navigator.pop(context),
       ),
       title: title == null
           ? null
@@ -45,7 +48,6 @@ class CommonBackAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
     );
   }
-
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_button_theme.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
+import 'package:petAblumMobile/core/theme/app_common_button_styles.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_dahyun.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/features/presentation/pages/main/alram.dart';
@@ -57,23 +58,11 @@ class HomePage extends StatelessWidget {
                     height: 55,
                     child: ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
+                      style: AppButtonStyles.base(
                         backgroundColor: AppColors.black,
                         foregroundColor: AppColors.f01,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 18),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
-                            color: AppColors.gray05,
-                            width: 1.5,
-                          ),
-                        ),
-                        elevation: 0,
-                      ).copyWith(
-                        shadowColor: WidgetStateProperty.all(
-                            Colors.black.withOpacity(0.25)),
-                        elevation: WidgetStateProperty.all(4),
+                        elevation: 4,
+                        shadowColor: Colors.black.withOpacity(0.25),
                       ),
                       child: Text(
                         '앨범 생성하기',
