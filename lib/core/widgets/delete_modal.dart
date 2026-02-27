@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petAblumMobile/core/theme/app_button_theme.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
+import 'package:petAblumMobile/core/theme/app_custom_button.dart';
 
 class DeleteConfirmDialog extends StatelessWidget {
   final String title;
@@ -21,58 +21,60 @@ class DeleteConfirmDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return Dialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      title: Text(
-        title,
-        style: AppTextStyle.subtitle20M120.copyWith(
-          color: AppColors.f05,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      content: Text(
-        content,
-        style: AppTextStyle.description14R120.copyWith(
-          color: AppColors.f04,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-      actions: [
-        Row(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: AppButtonTheme.gray.style,
-                child: Text(
-                  cancelText,
-                  style: AppTextStyle.body16M120,
-                ),
+            Text(
+              title,
+              style: AppTextStyle.subtitle20M120.copyWith(
+                color: AppColors.f05,
               ),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  onConfirm();
-                },
-                style: AppButtonTheme.elevated.style,
-                child: Text(
-                  confirmText,
-                  style: AppTextStyle.body16M120.copyWith(
-                    color: AppColors.f01,
+            const SizedBox(height: 8),
+            Text(
+              content,
+              style: AppTextStyle.description14R120.copyWith(
+                color: AppColors.f04,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+            Row(
+              children: [
+                Expanded(
+                  child: AppCustomButton(
+                    text: cancelText,
+                    onTap: () => Navigator.pop(context),
+                    backgroundColor: AppColors.gray02,
+                    textColor: AppColors.f05,
+                    borderColor: AppColors.gray02,
                   ),
                 ),
-              ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: AppCustomButton(
+                    text: confirmText,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onConfirm();
+                    },
+                    backgroundColor: AppColors.black,
+                    textColor: AppColors.f01,
+                    borderColor: AppColors.black,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 

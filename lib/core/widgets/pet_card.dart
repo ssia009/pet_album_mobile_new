@@ -14,6 +14,8 @@ class PetCard extends StatelessWidget {
   final VoidCallback? onTap;
   final Widget? topRightIcon;
   final String petFamily;
+  final bool isSelected;
+  final bool isDeleteMode;
 
   const PetCard({
     super.key,
@@ -27,6 +29,8 @@ class PetCard extends StatelessWidget {
     this.onTap,
     this.topRightIcon,
     required this.petFamily,
+    this.isSelected = false,
+    this.isDeleteMode = false,
   });
 
   @override
@@ -36,6 +40,13 @@ class PetCard extends StatelessWidget {
         final double w = constraints.maxWidth;
         final double h = w * (210 / 350);
         final double s = w / 350;
+
+        // 스트로크 색상 결정: 삭제 모드일 때만 표시
+        // 선택됨 → main 컬러, 미선택 → gray01
+        final Color strokeColor = isSelected
+            ? AppColors.main  // main 컬러로 교체 (프로젝트 AppColors.main 사용)
+            : AppColors.gray01;
+        final bool showStroke = isDeleteMode;
 
         return GestureDetector(
           onTap: onTap,
@@ -89,12 +100,28 @@ class PetCard extends StatelessWidget {
                     ),
                   ),
 
-                  // ✅ 맨 마지막 = 가장 위 레이어
+                  // topRightIcon (필요 시 유지)
                   if (topRightIcon != null)
                     Positioned(
                       right: 8 * s,
                       top: 8 * s,
                       child: topRightIcon!,
+                    ),
+
+                  // 외곽 스트로크 - SVG 포함 모든 레이어 위에 렌더링
+                  if (showStroke)
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20 * s),
+                            border: Border.all(
+                              color: strokeColor,
+                              width: 1.5,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                 ],
               ),

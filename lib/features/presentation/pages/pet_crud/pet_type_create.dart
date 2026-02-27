@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:petAblumMobile/core/theme/app_fonts_style_suit.dart';
 import 'package:petAblumMobile/core/widgets/common_app_back_bar_scaffold.dart';
 import 'package:petAblumMobile/core/theme/app_colors.dart';
@@ -19,7 +20,7 @@ class PetTypCreatePage extends StatelessWidget {
           children: const [
             SizedBox(height: 16),
             _TitleText(),
-            SizedBox(height: 120), // 👈 여기 120 줌
+            SizedBox(height: 120),
             _PetTypeRow(),
           ],
         ),
@@ -42,7 +43,6 @@ class _TitleText extends StatelessWidget {
   }
 }
 
-/// 반려동물 선택 Row
 class _PetTypeRow extends StatelessWidget {
   const _PetTypeRow();
 
@@ -53,12 +53,14 @@ class _PetTypeRow extends StatelessWidget {
         Expanded(
           child: _PetTypeCard(
             label: '강아지',
+            imagePath: 'assets/system/pet_character/dog/basic_dog/maltese.svg',
           ),
         ),
         const SizedBox(width: 16),
         Expanded(
           child: _PetTypeCard(
             label: '고양이',
+            imagePath: 'assets/system/pet_character/cat/basic_cat/Orange_Tabby.svg',
           ),
         ),
       ],
@@ -66,12 +68,13 @@ class _PetTypeRow extends StatelessWidget {
   }
 }
 
-/// 반려동물 선택 카드
 class _PetTypeCard extends StatelessWidget {
   final String label;
+  final String imagePath;
 
   const _PetTypeCard({
     required this.label,
+    required this.imagePath,
   });
 
   @override
@@ -87,7 +90,6 @@ class _PetTypeCard extends StatelessWidget {
       },
       child: Container(
         height: 207,
-        padding: const EdgeInsets.fromLTRB(57, 12, 57, 12),
         decoration: BoxDecoration(
           color: const Color(0xFFEEEEEE),
           borderRadius: BorderRadius.circular(16),
@@ -96,18 +98,31 @@ class _PetTypeCard extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 10),
-        Text(
-          label,
-          style: AppTextStyle.body16M120.copyWith(
-            color: AppColors.f05,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Expanded(
+                child: SvgPicture.asset(
+                  imagePath,
+                  width: 142,
+                  height: 136,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.body16M120.copyWith(
+                    color: AppColors.f05,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-          ],
         ),
       ),
     );

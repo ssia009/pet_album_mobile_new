@@ -40,7 +40,7 @@ class _PetListPageState extends State<PetListPage> {
   void _deleteSelectedPets() {
     DeleteConfirmDialog.show(
       context: context,
-      content: '${_selectedPets.length}개의 반려동물을 삭제하시겠습니까?',
+      content: '${_selectedPets.length}개의 반려동물을 삭제합니다.',
       onConfirm: () {
         setState(() {
           _selectedPets.clear();
@@ -67,7 +67,9 @@ class _PetListPageState extends State<PetListPage> {
             child: Text(
               '삭제',
               style: AppTextStyle.description14R120.copyWith(
-                color: _selectedPets.isEmpty ? AppColors.gray03 : AppColors.red,
+                color: _selectedPets.isEmpty
+                    ? AppColors.gray03
+                    : AppColors.red,
               ),
             ),
           ),
@@ -130,22 +132,8 @@ class _PetListPageState extends State<PetListPage> {
       sex: '수컷',
       birth: '2025.01.02',
       petFamily: '또또네 가족',
-      topRightIcon: _isDeleteMode
-          ? GestureDetector(
-        onTap: () => _togglePetSelection(index),
-        child: Container(
-          width: 24,
-          height: 24,
-          child: SvgPicture.asset(
-            isSelected
-                ? 'assets/system/icons/icon_radio_on.svg'
-                : 'assets/system/icons/icon_radio_off.svg',
-            width: 24,
-            height: 24,
-          ),
-        ),
-      )
-          : null,
+      isSelected: isSelected,
+      isDeleteMode: _isDeleteMode,
       onTap: _isDeleteMode ? () => _togglePetSelection(index) : null,
     );
   }
